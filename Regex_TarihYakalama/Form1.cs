@@ -30,39 +30,37 @@ namespace Regex_TarihYakalama
 
         private void button1_Click(object sender, EventArgs e)
         {
-            // Regular Expression için bir desen (pattern) tanımlıyoruz :
+            // Regular Expression patterns definition..
 
-            string tarihDeseni = @"((0[1-9])|([12][0-9])|(3[01]))(-)((0?[1-9])|(1[0-2]))(-)([12][0-9][0-9][0-9])";
+            string datePattern = @"((0[1-9])|([12][0-9])|(3[01]))(-)((0?[1-9])|(1[0-2]))(-)([12][0-9][0-9][0-9])";
 
-            string telefonDeseni = @"(0?5[0-9][0-9])(-)([0-9][0-9][0-9])(-)([0-9][0-9])(-)([0-9][0-9])";
+            string phonePattern = @"(0?5[0-9][0-9])(-)([0-9][0-9][0-9])(-)([0-9][0-9])(-)([0-9][0-9])";
 
-            string TCKN_Deseni = @"[1-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][02468]";
+            string TCKN_Pattern = @"[1-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][02468]";
 
 
-            // Regular Expressionumuzu tanımlıyoruz :
-           
+            // Regular Expressions dafinition..
 
-            Regex regexTarih = new Regex(tarihDeseni);
-            Regex regexTelefon = new Regex(telefonDeseni);
-            Regex regexTCKN = new Regex(TCKN_Deseni);
+            Regex regexDate = new Regex(datePattern);
+            Regex regexPhone = new Regex(phonePattern);
+            Regex regexTCKN = new Regex(TCKN_Pattern);
             Regex regexPassword = new Regex(@"([a-zA-Z0-9p{P}P{L}]{8,14})"); // is not complete
-            // Tarih arayacağımız metni konsoldan alıyoruz :
 
-            string info = "Tarih: " + textBox1.Text + "\n" + "Tel No: " + textBox2.Text + "\n" + "TCKN: " + textBox3.Text;
+            string info = "Date: " + textBox1.Text + "\n" + "Phone: " + textBox2.Text + "\n" + "TCKN: " + textBox3.Text;
 
             // Metin içerisindeki tarihleri (birden fazla olabilir) Collection nesnesine atıyoruz :
 
-            if(regexTarih.IsMatch(textBox1.Text) && regexTelefon.IsMatch(textBox2.Text) && regexTCKN.IsMatch(textBox3.Text) )
+            if(regexDate.IsMatch(textBox1.Text) && regexPhone.IsMatch(textBox2.Text) && regexTCKN.IsMatch(textBox3.Text) )
             {
                 if (regexPassword.IsMatch(textBox4.Text))
                     MessageBox.Show(info);
                 else
-                    MessageBox.Show("Parola geçersiz karakterler içeriyor.");
+                    MessageBox.Show("Password has invalid characters.");
 
             }
             else
             {
-                MessageBox.Show("Tarih formatı,telefon formatı veya TCKN hatalı.Lütfen 'GG-AA-YYYY' '05XX-XXX-XX-XX' şeklinde deneyiniz.");
+                MessageBox.Show("Date format,Phone format or TCKN is incorrect.Please try like 'DD-MM-YYYY' '05XX-XXX-XX-XX'.");
             }
 
 
@@ -78,19 +76,19 @@ namespace Regex_TarihYakalama
 
             if(count < 3)
             {
-                label5.Text = "Zayıf";
+                label5.Text = "Weak";
                 progressBar1.ForeColor = Color.Red;
                 progressBar1.Value = count;
             }
             else if (count == 3)
             {
-                label5.Text = "Orta";
+                label5.Text = "Medium";
                 progressBar1.ForeColor = Color.Yellow;
                 progressBar1.Value = count;
             }
             else if (count > 3)
             {
-                label5.Text = "Güçlü";
+                label5.Text = "Strong";
                 progressBar1.ForeColor = Color.Green;
                 progressBar1.Value = count;
             }
