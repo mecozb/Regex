@@ -45,7 +45,7 @@ namespace Regex_TarihYakalama
             Regex regexTarih = new Regex(tarihDeseni);
             Regex regexTelefon = new Regex(telefonDeseni);
             Regex regexTCKN = new Regex(TCKN_Deseni);
-            Regex regexPassword = new Regex(@"([a-zA-Z0-9p{P}P{L}]{8,14})");
+            Regex regexPassword = new Regex(@"([a-zA-Z0-9p{P}P{L}]{8,14})"); // is not complete
             // Tarih arayacağımız metni konsoldan alıyoruz :
 
             string info = "Tarih: " + textBox1.Text + "\n" + "Tel No: " + textBox2.Text + "\n" + "TCKN: " + textBox3.Text;
